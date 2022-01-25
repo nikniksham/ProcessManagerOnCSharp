@@ -7,7 +7,7 @@ namespace ProcessManager
     { 
         static void Main(string[] args)
         {
-            var com = "";
+            var com = "help";
             var proc_man = new ProcessManager();
             ConsoleKeyInfo key;
             var key_name_lower = "";
@@ -20,6 +20,8 @@ namespace ProcessManager
             var cur_com = "";
             var id_cur_com = 0;
             var history = new History();
+            var show_spec_seal = false;
+            var c_spec_seal = 0;
             while (true)
             {
                 //for (int i = 0; i < 10; ++i)
@@ -200,15 +202,27 @@ namespace ProcessManager
                         // Console.Write($"\rUser press another key: {key_name_lower, -30}");
                     }
                     // Console.WriteLine($"\r {key.Key,30}");
-                    Console.Write($"Hacker console: {com}");
+                    Console.Write($"Hacker console: {com}{(show_spec_seal ? "|" : "")}");
                     Console.SetCursorPosition(posX,  posY);
                     for (int i = 0; i < com.Length / Console.WindowWidth + 1; ++i)
                     {
                         prog.ClearLine(posY + i);
                     }
+                    c_spec_seal++;
+                    if (c_spec_seal > 5)
+                    {
+                        c_spec_seal = 0;
+                        show_spec_seal = !show_spec_seal;
+                    }
 
                 }
-                Console.Write($"Hacker console: {com}");
+                Console.Write($"Hacker console: {com}{(show_spec_seal ? "|" : "")}");
+                c_spec_seal += 2;
+                if (c_spec_seal > 5)
+                {
+                    c_spec_seal = 0;
+                    show_spec_seal = !show_spec_seal;
+                }
                 //if (key.Key != ConsoleKey.)
                 //{
 
